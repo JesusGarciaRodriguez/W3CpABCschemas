@@ -1,0 +1,153 @@
+{
+"@context": [
+    {"@version": 1.1},
+    "https://www.w3.org/ns/odrl.jsonld",
+{
+    "ol": "https://olympus-project.eu/w3cModel/",
+    "schema": "https://schema.org/",
+    "OlympusCredential": "ol:OlympusCredential",
+    "OlympusPresentation": "ol:OlympusPresentation",
+    "OlZkSchema": "ol:OlZkSchema",
+    "operation": "ol:operation",
+    "value": {   
+        "@id": "ol:predValue",
+        "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "ol": "https://olympus-project.eu/w3cModel/",
+            "lowerBound": "ol:lowerBound",
+            "upperBound": "ol:upperBound",
+            "set": "ol:set"
+        }
+    },
+    "OlPsSignature": {
+        "@id": "ol:OlPsSignature",
+        "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "sec": "https://w3id.org/security#",
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
+            "proofValue": "sec:proofValue",
+            "epoch": "ol:epoch",
+            "verificationMethod": {
+                "@id": "sec:verificationMethod",
+                "@type": "@id"
+            },
+            "proofPurpose": {
+                "@id": "sec:proofPurpose",
+                "@type": "@vocab",
+                "@context": {
+                    "@version": 1.1,
+                    "@protected": true,
+                    "id": "@id",
+                    "type": "@type",
+                    "sec": "https://w3id.org/security#",
+                    "assertionMethod": {
+                        "@id": "sec:assertionMethod",
+                        "@type": "@id",
+                        "@container": "@set"
+                    },
+                    "authentication": {
+                        "@id": "sec:authenticationMethod",
+                        "@type": "@id",
+                        "@container": "@set"
+                    }
+                }
+            }
+        }
+    },
+    "OlPsDerivedProof": {
+        "@id": "ol:OlPsDerivedProof",
+        "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "sec": "https://w3id.org/security#",
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
+            "nonce": "sec:nonce",
+            "proofValue": "sec:proofValue",
+            "epoch": "ol:epoch",
+            "verificationMethod": {
+                "@id": "sec:verificationMethod",
+                "@type": "@id"
+            },
+            "proofPurpose": {
+                "@id": "sec:proofPurpose",
+                "@type": "@vocab",
+                "@context": {
+                    "@version": 1.1,
+                    "@protected": true,
+                    "id": "@id",
+                    "type": "@type",
+                    "sec": "https://w3id.org/security#",
+                    "assertionMethod": {
+                        "@id": "sec:assertionMethod",
+                        "@type": "@id",
+                        "@container": "@set"
+                    },
+                    "authentication": {
+                        "@id": "sec:authenticationMethod",
+                        "@type": "@id",
+                        "@container": "@set"
+                    }
+                }
+            }
+        }
+    },
+    "OlPsDerivedProofRange": {
+        "@id": "ol:OlPsDerivedProofRange",
+        "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "sec": "https://w3id.org/security#",
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
+            "nonce": "sec:nonce",
+            "proofValue": "sec:proofValue",
+            "epoch": "ol:epoch",
+            "verificationMethod": {
+                "@id": "sec:verificationMethod",
+                "@type": "@id"
+            },
+            "rangeProofs": {
+                "@id": "ol:rangeProofs",
+                "@container": "@set",
+                "@context": {
+                    "@version": 1.1,
+                    "@protected": true,
+                    "ol": "https://olympus-project.eu/w3cModel/",
+                    "attr": "@id",
+                    "commitment": "ol:rangeCommitment",
+                    "lowerBoundProofValue": "ol:lowerBoundProofValue",
+                    "upperBoundProofValue": "ol:upperBoundProofValue"
+                }
+            },
+            "proofPurpose": {
+                "@id": "sec:proofPurpose",
+                "@type": "@vocab",
+                "@context": {
+                    "@version": 1.1,
+                    "@protected": true,
+                    "id": "@id",
+                    "type": "@type",
+                    "sec": "https://w3id.org/security#",
+                    "assertionMethod": {
+                        "@id": "sec:assertionMethod",
+                        "@type": "@id",
+                        "@container": "@set"
+                    },
+                    "authentication": {
+                        "@id": "sec:authenticationMethod",
+                        "@type": "@id",
+                        "@container": "@set"
+                    }
+                }
+            }
+        }
+    }
+}]
+}

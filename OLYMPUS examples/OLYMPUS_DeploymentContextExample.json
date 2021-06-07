@@ -1,0 +1,13 @@
+{
+    "@context": [
+        {"@version": 1.1},
+        "https://www.w3.org/ns/odrl.jsonld",
+        {
+            "ex": "https://example-olympus-deployment.com/attributes/",
+            "givenName": "ex:GivenName",
+            "familyName": "ex:FamilyName",
+            "height": "ex:Height",
+            "dateOfBirth": "ex: DateOfBirth"
+        }
+    ]
+}

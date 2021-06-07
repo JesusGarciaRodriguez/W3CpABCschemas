@@ -1,0 +1,63 @@
+{
+    "@context": [
+        "https://w3id.org/credentials/v1",
+        "https://olympus-project.eu/context",
+        "https://example-olympus-deployment.com/context"
+    ],
+    "type": [
+        "VerifiablePresentation",
+        "OlympusPresentation"
+    ],
+    "expirationDate": "2021-06-07T18:14:20",
+    "verifiableCredential": [
+        {
+            "credentialSchema": [
+                {
+                    "id": "https://example-olympus-deployment.com/schemas/validationSchema",
+                    "type": "OlZkValidationSchema"
+                },
+                {
+                    "id": "https://olympus-project.eu/example/encodingSchema",
+                    "type": "OlZkEncodingSchema"
+                }
+            ],
+            "credentialSubject": {
+                "givenName": "John",
+                "dateOfBirth": {
+                    "operation": "le",
+                    "value": {
+                        "upperBound": "2003-06-07T00:00:00"
+                    }
+                }
+            },
+            "issuanceDate": "2021-06-07T18:13:16",
+            "issuer": "did:example:OL-vIdP",
+            "type": [
+                "VerifiableCredential",
+                "OlympusCredential"
+            ],
+            "expirationDate": "2021-06-08T14:13:16",
+            "proof": {
+                "type": "OlPsDerivedProofRange",
+                "proofValue": "CvMBCvABCjoL5rJrdCRpYmYUujgD1szKR2Mqj9YlIm4cxvZ7oBZG6QmanAEFScKlsrwjdwEmKCz/1UOUR7115prbEjoRudA0AWqY4mDE2WLYHGt2DMr57yWXY65uv8OLIOSZtQEDCbc7gUD3wQ8C2aR++Vf9lQyFvlL+sj6mGjoMWbY/f5M+3daIEWz13mQTTsioPatRQQetqqFbEj/fSXHaPkpV91DGRM0U0+BmE8OnAP2qL896l26nIjoByURK+NdTkulyAW82Mqj5UJtzP5ouBFs69haL7Pq7dKSmAd315uT8b363k4ZywI4Qf1uowJBvY6TxEvMBCvABCjoGFZ8ZmS9J0fOBp67xrYkADgyN9I6tHvJloR6D2XdCBHsIlNsrXU+ft7Q219macyNukCzjayEavko9EjoTngRUQ70IBRwXn97BQ5Zcmdp5CsZ2Rp2V01vxBzFbABcEbDUcEBhOdF2JEGk4JXs7D4yqhQaw72rkGjoNj+cX3bRbE4efNP9k7xIp+Whv/oCOVHVDRFv6QJyQCdtBAWhE1aL1SuOa1swfi06aEXqO25lt5eZYIjoEIq05coPDd+pg+56IhIoRwAfZu+KPWewL19vmIJHZXYwOvpzizE4I7LvMDtzHeIazB6Gtry3jYshbGjwKOgAAAAAAAAAAAAAAAAAAAAAAAAANmSaU7SV1hrx85u4gtunOjWCh0EYHWXj1OHDV30/j4WVSGNDESaYifAo8aHR0cHM6Ly9leGFtcGxlLW9seW1wdXMtZGVwbG95bWVudC5jb20vYXR0cmlidXRlcy9GYW1pbHlOYW1lEjwKOgAAAAAAAAAAAAAAAAAAAAAAAAAFWVEEybIflT//i0oJ69T+GzrXCb6K+xni40GMekJ/IdwI25G4N0oieAo4aHR0cHM6Ly9leGFtcGxlLW9seW1wdXMtZGVwbG95bWVudC5jb20vYXR0cmlidXRlcy9IZWlnaHQSPAo6AAAAAAAAAAAAAAAAAAAAAAAAAA74j7RnwLVokh1pK9obFQUilKJREDs8v1j1Ls8NGnjguSp4u2GE9iJ9Cj1odHRwczovL2V4YW1wbGUtb2x5bXB1cy1kZXBsb3ltZW50LmNvbS9hdHRyaWJ1dGVzL0RhdGVPZkJpcnRoEjwKOgAAAAAAAAAAAAAAAAAAAAAAAAAFrFgV6vq8JxZjpXYm9CWrHYXjASc2PzGJ/tuxFAjrdJQGSRffbf8qPAo6AAAAAAAAAAAAAAAAAAAAAAAAAAgOUwImB6TytsE12dpiMZZb4EkMTYwt+b38wgRD/ukONLiOzRAzCTI8CjoAAAAAAAAAAAAAAAAAAAAAAAAACq6Tgh/rZIElu7GNF8jFli/NLEQjJkfVuhXmnaK/hr5WiVif66sIOn0KPWh0dHBzOi8vZXhhbXBsZS1vbHltcHVzLWRlcGxveW1lbnQuY29tL2F0dHJpYnV0ZXMvRGF0ZU9mQmlydGgSPAo6AAAAAAAAAAAAAAAAAAAAAAAAAAnEJmg424QI/8g3F69Csj+OambUMGeVpvHLxAZwQ2syzNmHLtTl4w==",
+                "epoch": 1623161596000,
+                "rangeProofs": [
+                    {
+                        "attr": "https://example-olympus-deployment.com/attributes/DateOfBirth",
+                        "commitment": "CngKOgXd2EuGnbm50GtHjEGUBM/0IIZLmgZkoAeK111g52K/C9p7r8KCUIXcEzzUi1/s6guvVWZi2aeNluwSOgIWGepDqyq0EUTFGLFWwBWcaIs0Af4x9/tlCVkQgGtu3BXoBd+RnH7kO0+dJhCHqOuR1L2w4lxBMZs=",
+                        "lowerBoundProofValue": "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",
+                        "upperBoundProofValue": "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"
+                    }
+                ],
+                "nonce": "signedMessage",
+                "verificationMethod": "did:example:OL-vIdP:method",
+                "proofPurpose": "AssertionMethod"
+            },
+            "@context": [
+                "https://w3id.org/credentials/v1",
+                "https://olympus-project.eu/context",
+                "https://example-olympus-deployment.com/context"
+            ]
+        }
+    ]
+}

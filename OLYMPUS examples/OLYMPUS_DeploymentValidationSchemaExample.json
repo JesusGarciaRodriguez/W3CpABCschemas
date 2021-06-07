@@ -1,0 +1,83 @@
+{
+    "$id": "https://example-olympus-deployment.com/schemas/validationSchema.json",
+    "$schema": "https://verifiable-credentials-pabc.org/meta-schema.json",
+    "title": "Validation schema example for OLYMPUS example deployment",
+    "$comment": "Because of field names used, the schema has to be used with the compacted JSON-LD form.",
+    "type": "object",
+    "required" : ["proof","credentialSubject","expirationDate","issuer","credentialSchema","@context"],
+    "properties":{
+        "@context": {
+            "type":"array",
+            "uniqueItems": true,
+            "items":[
+                {"$ref": "https://verifiable-credentials-pabc.org/meta-schema.json#/definitions/constVCcontext"},
+                {"$ref": "https://verifiable-credentials-pabc.org/meta-schema.json#/definitions/constOLVCcontext"}
+            ],
+            "additionalItems":{"type": "string"}
+        },
+        "type": {
+            "type":"array",
+            "uniqueItems": true,
+            "items":{ "type": "string"},
+            "$comment":"We could specify more asking for the VCCredentail and OlympusCredential types but it is not critical."
+        },
+        "credentialSchema": {
+            "type":"array",
+            "uniqueItems": true,
+            "items":{"$ref": "https://verifiable-credentials-pabc.org/meta-schema.json#/definitions/credSchema"}
+        },
+        "issuer": {
+            "type": "string",
+            "format": "uri"
+        },
+        "expirationDate": {"$ref": "https://verifiable-credentials-pabc.org/meta-schema.json#/definitions/dateRFC3339seconds"},
+        "proof":{
+            "type":"object",
+            "required":"type",
+            "$comment":"We enforce the type property which is the only mandatory one per the standard, any additional property will be accepted",
+            "properties":{
+                "type":{"type":"string"}
+            }
+        },
+        "credentialSubject":{
+            "type": "object",
+            "properties": {
+                "dateOfBirth": {
+                    "oneOf":[{
+                            "$ref": "https://verifiable-credentials-pabc.org/meta-schema.json#/definitions/dateRFC3339days",
+                            "minDate": "1900-01-01",
+                            "maxDate": "2030-01-01",
+                            "granularity": "DAYS",
+                            "description": "The person's date of birth.",
+                            "zkSerializationMethod": "Represent dates as 'time unit from epoch' depending on granularity (in this case, days from epoch). Then, transformed result is equal to 1+value-minDate"
+                        },
+                        {   "$ref": "https://verifiable-credentials-pabc.org/meta-schema.json#/definitions/predicate"}]
+                },
+                "givenName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 12,
+                    "description": "The person's given name.",
+                    "zkSerializationMethod": "Take hash sha-512 of the value (utf8-encoding) and take it as the magnitude of a big integer"
+                },
+                "familyName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 18,
+                    "description": "The person's family name.",
+                    "zkSerializationMethod": "Take hash sha-512 of the value (utf8-encoding) and take it as the magnitude of a big integer"
+                },
+                "height": {
+                    "oneOf":[{
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 300,
+                            "description": "Height of the person in centimeters.",
+                            "zkSerializationMethod": "Transformed result is equal to 1+value-minimum"
+                        },
+                        {   "$ref": "https://verifiable-credentials-pabc.org/meta-schema.json#/definitions/predicate"}]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "predicates": [
+        {
+            "operation": "nonMemberOf",
+            "value": {
+                "set": "https://example.org/set"
+            }
+        },
+        {
+            "operation": "memberOf",
+            "value": {
+                "set": [
+                    "item1",
+                    "item2"
+                ]
+            }
+        },
+        {
+            "operation": "inRange",
+            "value": {
+                "lowerBound": 12,
+                "upperBound": 20
+            }
+        },
+        {
+            "operation": "le",
+            "value": {
+                "upperBound": 12
+            }
+        },
+        {
+            "operation": "ge",
+            "value": {
+                "lowerBound": 12
+            }
+        }
+    ]
+}

@@ -1,0 +1,178 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://verifiable-credentials-pabc.org/meta-schema.json",
+    "$recursiveAnchor": true,
+    "title": "Meta-schema for VC validation schemas",
+    "$vocabulary": {
+        "https://json-schema.org/draft/2019-09/vocab/core": true,
+        "https://json-schema.org/draft/2019-09/vocab/applicator": true,
+        "https://json-schema.org/draft/2019-09/vocab/validation": true,
+        "https://json-schema.org/draft/2019-09/vocab/format": false
+    },
+    "type": ["object","boolean"],
+    "allOf": [
+        {"$ref": "https://json-schema.org/draft/2019-09/meta/core"},
+        {"$ref": "https://json-schema.org/draft/2019-09/meta/applicator"},
+        {"$ref": "https://json-schema.org/draft/2019-09/meta/validation"},
+        {"$ref": "https://json-schema.org/draft/2019-09/meta/format"}
+    ],
+    "properties": {
+        "minDate": {
+            "$ref": "#/definitions/dateRFC3339seconds"
+        },
+        "maxDate": {
+            "$ref": "#/definitions/dateRFC3339seconds"
+        },
+        "granularity": {
+            "$comment":"This field may not be necessary if schema information is not used for Zero-Knowledge serialization.",
+            "type": "string",
+            "enum": ["MILLIS","SECONDS","MINUTES","HOURS","DAYS"]
+        },
+        "zkSerializationMethod":{
+            "description":"This annotation keyword will be used to describe how the value is transformed for its use in the Zero-Knowledge operations.",
+            "$type": "string"
+        }
+    },
+    "definitions": {
+        "dateRFC3339seconds":{
+            "type": "string",
+            "format": "date-time",
+            "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d"
+        },
+        "dateRFC3339days":{
+            "type": "string",
+            "format": "date",
+            "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d"
+        },
+        "dateRFC3339":{
+            "oneOf":[
+                {"$ref": "#/definitions/dateRFC3339days"},
+                {"$ref": "#/definitions/dateRFC3339seconds"}
+            ]
+        },
+        "constVCcontext":{
+            "type":"string",
+            "const":"https://www.w3.org/2018/credentials/v1"
+        },
+        "credSchema":{
+            "type":"object",
+            "required":["id","type"],
+            "properties":{
+                "type":{
+                    "type": "string",
+                    "format": "uri"
+                },
+                "id":{
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        },
+        "evidence":{
+            "type":"object",
+            "required":["type"],
+            "properties":{
+                "type":{
+                    "type":"array",
+                    "uniqueItems": true,
+                    "items":{ "type": "string"},
+                    "$comment":"Rest of fields will depend on the type of evidence supported in a specific deployment."
+                },
+                "id":{
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        },
+        "predicate": {
+            "$comment": "Instead of this explicit definition, a reference to the predicate validation schema could be used",
+            "type": "object",
+            "required": ["operation","value"],
+            "properties": {
+                "operation": {
+                    "type": "string",
+                    "enum": ["ge","le","inRange","memberOf","nonMemberOf"]
+                },
+                "value": {
+                    "type": "object",
+                    "properties": {
+                        "lowerBound": {
+                            "oneOf": [
+                                {"type": "number"},
+                                {"$ref": "#/definitions/dateRFC3339"}
+                            ]
+                        },
+                        "upperBound": {
+                            "oneOf": [
+                                {"type": "number"},
+                                {"$ref": "#/definitions/dateRFC3339"}
+                            ]
+                        },
+                        "set": {
+                            "oneOf": [
+                                {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                {
+                                    "type": "array", 
+                                    "minItems": 1,
+                                    "uniqueItems": true
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "anyOf":[
+                {
+                    "properties": {
+                        "operation": { "const": "ge" },
+                        "value":{
+                            "required": ["lowerBound"],
+                            "allOf":[
+                                {"not":{"required":["upperBound"]}},
+                                {"not":{"required":["set"]}}
+                            ]
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "operation": { "const": "le" },
+                        "value":{
+                            "required": ["upperBound"],
+                            "allOf":[
+                                {"not":{"required":["lowerBound"]}},
+                                {"not":{"required":["set"]}}
+                            ]
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "operation": { "const": "inRange" },
+                        "value":{
+                            "required": ["lowerBound","upperBound"],
+                            "allOf":[
+                                {"not":{"required":["set"]}}
+                            ]
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "operation": { "enum": ["memberOf","nonMemberOf"] },
+                        "value":{
+                            "required": ["set"],
+                            "allOf":[
+                                {"not":{"required":["lowerBound"]}},
+                                {"not":{"required":["upperBound"]}}
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
